@@ -1,0 +1,95 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "Simple in-memory API to track regulatory deadlines for startups in Australia.",
+        "title": "Regulatory Deadline Calendar API",
+        "contact": {},
+        "version": "1.0"
+    },
+    "basePath": "/api/v1",
+    "paths": {
+        "/deadlines": {
+            "get": {
+                "description": "Returns all regulatory deadlines",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "deadlines"
+                ],
+                "summary": "List regulatory deadlines",
+                "responses": {
+                    "200": {
+                        "description": "Example: {\\\"code\\\":\\\"A00\\\",\\\"message\\\":\\\"success\\\",\\\"data\\\":[]}",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Example payload:\n{\n\"title\": \"Quarterly BAS Lodgement\",\n\"category\": \"ATO_TAX\",\n\"dueDate\": \"2025-01-31\",\n\"notes\": \"Coordinate with accountant\"\n}",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "deadlines"
+                ],
+                "summary": "Create a new regulatory deadline",
+                "parameters": [
+                    {
+                        "description": "Deadline payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Example: {\\\"code\\\":\\\"A00\\\",\\\"message\\\":\\\"success\\\",\\\"data\\\":{}}",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/deadlines/{id}/complete": {
+            "put": {
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "deadlines"
+                ],
+                "summary": "Mark a deadline as completed",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "Deadline ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Example: {\\\"code\\\":\\\"A00\\\",\\\"message\\\":\\\"success\\\",\\\"data\\\":{}}",
+                        "schema": {
+                            "type": "object",
+                            "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

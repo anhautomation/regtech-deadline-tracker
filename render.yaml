@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: regtech-deadline-tracker
+    rootDir: backend
+    env: go
+    buildCommand: go build -o app ./cmd/server
+    startCommand: ./app
+    autoDeploy: true
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: GO_VERSION
+        value: 1.25.4

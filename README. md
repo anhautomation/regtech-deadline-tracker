@@ -1,0 +1,149 @@
+# Compliance Deadline Tracker — RegTech Demo (AI-Generated)
+
+This project is a small but meaningful RegTech feature built using **100% AI-generated code** (“vibe coding”).  
+It helps early-stage Australian startups **track compliance deadlines** such as ASIC Annual Reviews, BAS, PAYG, STP, and Super.
+
+🚀 Live demo: https://regtech-deadline-tracker.vercel.app  
+🔌 Backend API docs: https://regtech-deadline-tracker.onrender.com/swagger/index.html
+
+---
+
+## 🎯 Feature & RegTech Pain Point
+
+Australian founders frequently miss regulatory filings because deadlines are tracked in spreadsheets, emails, or a founder’s memory.
+
+This demo solves one specific pain point:
+
+> “Show me all compliance deadlines that are upcoming or overdue, allow me to tick them off, and make sure I don’t forget anything.”
+
+The feature includes:
+
+- List of regulatory deadlines
+- Clear **overdue / due soon / upcoming** labels
+- Colour indicators (🔴 overdue / 🟢 upcoming or completed)
+- One-click **Mark done**
+- A popup that summarises **overdue + due-soon deadlines** when the user opens the app
+
+Small feature — **big impact** on fines, stress, and accountant time.
+
+---
+
+## 🧱 Architecture Overview
+
+| Layer      | Technology |
+|-----------|------------|
+| Frontend  | React + Vite |
+| Backend   | Go (in-memory storage) |
+| Database  | None — simple and free to run |
+| Deployment | Frontend on **Vercel**, Backend on **Render** |
+
+### Backend
+
+- Exposes REST API endpoints:
+  - `GET /api/deadlines`
+  - `POST /api/deadlines`
+  - `POST /api/deadlines/:id/complete`
+  - `GET /api/deadlines/summary`
+- Stores deadlines in memory (no DB)
+- Seeds real AU regulatory obligations as sample data
+
+### Frontend
+
+- Pages and components:
+  - `DeadlinesPage`
+  - `DeadlineForm`
+  - `DeadlineList`
+  - `DeadlineItem`
+  - `OverdueSummaryModal`
+- State management via custom hook `useDeadlines`
+- Optimistic UI when marking as done
+- Environment variable for backend URL
+
+---
+
+## 💻 Running the App
+
+### Local – Backend
+
+```bash
+cd backend
+go run ./cmd/server
+
+### Frontend
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+---
+
+## 🌍 Production URLs
+
+| Service | URL |
+|--------|-----|
+| Frontend (Vercel) | https://regtech-deadline-tracker.vercel.app |
+| Backend (Render) | https://regtech-deadline-tracker.onrender.com |
+
+---
+
+## 🤖 Vibe-Coding Process (AI-only development)
+
+The assignment required **zero manual business-logic typing**.  
+My role was **architect + reviewer**, not typist.
+
+### Tools Used
+
+- ChatGPT (GPT-5) — main coding assistant
+
+### Development flow
+
+1. **Design & modelling with AI**
+   - Asked AI to propose the domain model and REST endpoints for AU compliance obligations.
+2. **Backend generation**
+   - AI generated handlers, router, models, and in-memory repository.
+3. **Frontend generation**
+   - AI generated components, hooks, modal workflow, and optimistic update.
+4. **Iteration & debugging**
+   - When something didn’t work, I explained the issue in natural language
+     and let AI regenerate the fix.
+
+Examples of prompts used:
+
+```
+Mark-done does not update the UI. Fix the state logic so it treats items immutably.
+```
+
+```
+Deadlines due today are marked overdue. Rewrite comparison to operate on date only.
+```
+
+### Takeaway
+
+AI is extremely fast at generating working software, but **human architecture and feedback are essential**.
+
+---
+
+## 🧪 QA / Manual Quality Checks
+
+Even without automated tests, I validated:
+
+- Add deadline → appears correctly
+- Mark done → status and colour update
+- Overdue / due-today logic behaves correctly
+- Summary popup appears only when relevant
+- Refresh keeps correct state
+- Network failure shows friendly error instead of crash
+
+---
+
+## 🚀 Future Enhancements
+
+- Email reminders before deadlines
+- Calendar sync (Google / Outlook)
+- Xero / MYOB integration
+- Multi-user workspaces with auth
+- Database (Supabase / PostgreSQL)
+
+---

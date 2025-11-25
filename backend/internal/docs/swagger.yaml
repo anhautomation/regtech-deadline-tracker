@@ -1,0 +1,71 @@
+basePath: /api/v1
+info:
+  contact: {}
+  description: Simple in-memory API to track regulatory deadlines for startups in
+    Australia.
+  title: Regulatory Deadline Calendar API
+  version: "1.0"
+paths:
+  /deadlines:
+    get:
+      description: Returns all regulatory deadlines
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Example: {\"code\":\"A00\",\"message\":\"success\",\"data\":[]}'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: List regulatory deadlines
+      tags:
+      - deadlines
+    post:
+      consumes:
+      - application/json
+      description: |-
+        Example payload:
+        {
+        "title": "Quarterly BAS Lodgement",
+        "category": "ATO_TAX",
+        "dueDate": "2025-01-31",
+        "notes": "Coordinate with accountant"
+        }
+      parameters:
+      - description: Deadline payload
+        in: body
+        name: request
+        required: true
+        schema:
+          type: object
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Example: {\"code\":\"A00\",\"message\":\"success\",\"data\":{}}'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create a new regulatory deadline
+      tags:
+      - deadlines
+  /deadlines/{id}/complete:
+    put:
+      parameters:
+      - description: Deadline ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 'Example: {\"code\":\"A00\",\"message\":\"success\",\"data\":{}}'
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Mark a deadline as completed
+      tags:
+      - deadlines
+swagger: "2.0"

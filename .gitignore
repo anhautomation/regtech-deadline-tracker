@@ -1,0 +1,38 @@
+# ----- Node / Frontend -----
+node_modules/
+dist/
+build/
+.vite/
+
+# Vite / React
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+vite.config.local.*
+.DS_Store
+
+# Env files (do not commit secrets)
+.env
+.env.local
+.env.*.local
+
+# ----- Go / Backend -----
+app
+bin/
+*.exe
+*.out
+*.test
+
+# Go modules cache (usually global, but safe)
+vendor/
+
+# ----- OS / Editor -----
+.DS_Store
+Thumbs.db
+
+# VS Code / IDE
+.vscode/
+.idea/
+*.swp
